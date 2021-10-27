@@ -43,6 +43,24 @@ async function fetchRecipes() {
     // in the recipes folder and fetch them from there. You'll need to add their paths to the recipes array.
 
     // Part 1 Expose - TODO
+
+    let recipe_Size = recipes.length;
+    
+    for(let iterator = 0; iterator < recipe_Size; iterator++){
+      fetch(recipes[iterator])
+        /*.then(response => response.json())
+        .then(recipeData => {
+          //recipeData.push(response.json());
+          console.log('Success:', recipeData);
+        })*/
+        //.then(response => console.log(response.json()))
+        .then((response) => {
+          recipeData[response.url] = response.json()
+        }) 
+    }
+    console.log("recipeData",recipeData);
+
+
   });
 }
 
