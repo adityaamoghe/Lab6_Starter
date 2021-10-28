@@ -55,15 +55,10 @@ async function fetchRecipes() {
           if (x1 == recipe_Size){
             resolve(true);
           }
-          //console.log('Success:', recipeData);
         })
         .catch((error) => reject(false));
-        //.then(response => console.log(response.json()))
-        /*.then((response) => {
-          recipeData[response.url] = response.json()
-        }) */
     }
-    //console.log("recipeData",recipeData);
+    console.log(recipeData);
 
 
   });
