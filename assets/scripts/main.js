@@ -48,18 +48,22 @@ async function fetchRecipes() {
     
     for(let iterator = 0; iterator < recipe_Size; iterator++){
       fetch(recipes[iterator])
-        /*.then(response => response.json())
-        .then(recipeData => {
-          //recipeData.push(response.json());
-          console.log('Success:', recipeData);
-        })*/
+        .then(response => response.json())
+        .then(data => {
+          recipeData[recipes[iterator]] = data;
+          let x1 = Object.keys(recipeData).length;
+          if (x1 == recipe_Size){
+            resolve(true);
+          }
+          //console.log('Success:', recipeData);
+        })
+        .catch((error) => reject(false));
         //.then(response => console.log(response.json()))
-        .then((response) => {
+        /*.then((response) => {
           recipeData[response.url] = response.json()
-        }) 
+        }) */
     }
-    console.log("recipeData",recipeData);
-    resolve(true);
+    //console.log("recipeData",recipeData);
 
 
   });
