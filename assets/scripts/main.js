@@ -56,7 +56,7 @@ async function fetchRecipes() {
             resolve(true);
           }
         })
-        .catch((error) => reject(false));
+        //.catch((error) => reject(false));
     }
     console.log(recipeData);
 
@@ -72,6 +72,16 @@ function createRecipeCards() {
   // show any others you've added when the user clicks on the "Show more" button.
 
   // Part 1 Expose - TODO
+
+  let mainVar = document.getElementsByTagName("main")[0];
+  const size  = 3;
+
+  for(let itr = 0; itr < size; itr++){
+    let unqElm = document.createElement("recipe-card");
+    unqElm.data = recipeData[recipes[itr]];
+    mainVar.appendChild(unqElm);
+  }
+
 }
 
 function bindShowMore() {
