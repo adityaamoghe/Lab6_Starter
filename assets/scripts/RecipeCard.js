@@ -1,8 +1,9 @@
 class RecipeCard extends HTMLElement {
   constructor() {
     // Part 1 Expose - TODO
-
     // You'll want to attach the shadow DOM here
+    super();
+    this.attachShadow({mode: 'open'});
   }
 
   set data(data) {
@@ -83,10 +84,6 @@ class RecipeCard extends HTMLElement {
         font-size: 12px;
       }
     `;
-    styleElem.innerHTML = styles;
-
-    // Here's the root element that you'll want to attach all of your other elements to
-    const card = document.createElement('article');
 
     // Some functions that will be helpful here:
     //    document.createElement()
@@ -100,6 +97,109 @@ class RecipeCard extends HTMLElement {
     // created in the constructor()
 
     // Part 1 Expose - TODO
+
+
+    styleElem.innerHTML = styles;
+    const card = document.createElement('article'); // Root element that as other elements attached to
+    let imgVar_1 = document.createElement('img');
+    let parVar_1 = document.createElement('p');
+    let parVar_2 = document.createElement('p');
+    let navVar = document.createElement('a')
+    let divVar = document.createElement('div');
+    
+    imgVar_1.src = searchForKey(data, "thumbnailUrl");
+    imgVar_1.alt = searchForKey(data, "headline");
+    card.appendChild(imgVar_1);
+
+    parVar_1.className = 'title';
+    navVar.href = getUrl(data);
+    navVar.text = searchForKey(data, "headline");
+
+    parVar_1.appendChild(navVar);
+    card.appendChild(parVar_1);
+
+    parVar_2.className = 'organization';
+    parVar_2.innerText = getOrganization(data);
+    card.appendChild(parVar_2);
+
+    divVar.className = "rating";
+    let ratingValue = searchForKey(data, "ratingValue");
+
+    if(ratingValue){
+      let spanVar_1 = document.createElement('span');
+      spanVar_1.innerHTML = ratingValue;
+      divVar.appendChild(spanVar_1);
+
+      let imgVar_2 = document.createElement('img');
+
+      if(ratingValue < 0.5){
+        imgVar_2.src = "assets/images/icons/0-star.svg";
+        imgVar_2.alt = "0 stars";
+      }
+      else if(ratingValue < 1.5){
+        imgVar_2.src = "assets/images/icons/1-star.svg";
+        imgVar_2.alt = "1 star";
+      }
+      else if(ratingValue < 2.5){
+        imgVar_2.src = "assets/images/icons/2-star.svg";
+        imgVar_2.alt = "2 stars";
+      }
+      else if(ratingValue < 3.5){
+        imgVar_2.src = "assets/images/icons/3-star.svg";
+        imgVar_2.alt = "3 stars";
+      }
+      else if (ratingValue < 4.5){
+        imgVar_2.src = "assets/images/icons/4-star.svg";
+        imgVar_2.alt = "4 stars";
+      }
+      else {
+        imgVar_2.src = "assets/images/icons/5-star.svg";
+        imgVar_2.alt = "5 stars";
+      }
+
+      divVar.appendChild(imgVar_2);
+      let spanVar_2 = document.createElement('span');
+      let ratingCount = searchForKey(data, "ratingCount");
+
+      if(!ratingCount){ratingCount = 0;}
+
+      spanVar_2.innerText = "(" + ratingCount + ")";
+      divVar.appendChild(spanVar_2);
+
+    } 
+    
+    else {
+      let spanVar = document.createElement('span');
+      spanVar.innerText = "No Reviews";
+      divVar.appendChild(spanVar);
+    }
+
+    card.appendChild(divVar);
+
+    let timeVar = document.createElement('time');
+    let totalTime = searchForKey(data, 'totalTime');
+
+    if(totalTime){
+      timeVar.innerText = convertTime(totalTime);
+      card.appendChild(timeVar);
+    }
+
+    let ingr = document.createElement('p');
+    ingr.className = "ingredients";
+
+    let recipeIngredient = searchForKey(data, 'recipeIngredient');
+    ingr.innerText = createIngredientList(recipeIngredient);
+
+    card.appendChild(ingr);
+
+    this.shadowRoot.appendChild(styleElem);
+    this.shadowRoot.appendChild(card);
+
+
+
+
+
+    
   }
 }
 
