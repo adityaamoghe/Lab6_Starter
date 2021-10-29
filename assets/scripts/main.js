@@ -106,7 +106,6 @@ function bindShowMore() {
       for(let iterator = start; iterator < end; iterator++){
         let recipeCard = document.createElement("recipe-card");
         recipeCard.data = recipeData[recipes[iterator]];
-        
         mainVar.appendChild(recipeCard);
       }
 
@@ -117,7 +116,6 @@ function bindShowMore() {
       mainVar.removeChild(mainVar.lastChild);
       mainVar.removeChild(mainVar.lastChild);
       mainVar.removeChild(mainVar.lastChild);
-
       button.innerText = "Show more";
     }
 
