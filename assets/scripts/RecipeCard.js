@@ -139,24 +139,19 @@ class RecipeCard extends HTMLElement {
       if(ratingValue < 0.5){
         imgVar_2.src = "assets/images/icons/0-star.svg";
         imgVar_2.alt = "0 stars";
-      }
-      else if(ratingValue < 1.5){
+      }else if(ratingValue < 1.5){
         imgVar_2.src = "assets/images/icons/1-star.svg";
         imgVar_2.alt = "1 star";
-      }
-      else if(ratingValue < 2.5){
+      }else if(ratingValue < 2.5){
         imgVar_2.src = "assets/images/icons/2-star.svg";
         imgVar_2.alt = "2 stars";
-      }
-      else if(ratingValue < 3.5){
+      }else if(ratingValue < 3.5){
         imgVar_2.src = "assets/images/icons/3-star.svg";
         imgVar_2.alt = "3 stars";
-      }
-      else if (ratingValue < 4.5){
+      }else if (ratingValue < 4.5){
         imgVar_2.src = "assets/images/icons/4-star.svg";
         imgVar_2.alt = "4 stars";
-      }
-      else {
+      }else {
         imgVar_2.src = "assets/images/icons/5-star.svg";
         imgVar_2.alt = "5 stars";
       }
