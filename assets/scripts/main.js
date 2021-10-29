@@ -60,7 +60,7 @@ async function fetchRecipes() {
           }
         })
     }
-    console.log(recipeData);
+    //console.log(recipeData);
 
 
   });
