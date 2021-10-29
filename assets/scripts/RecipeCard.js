@@ -106,6 +106,11 @@ class RecipeCard extends HTMLElement {
     let parVar_2 = document.createElement('p');
     let navVar = document.createElement('a')
     let divVar = document.createElement('div');
+    let ratingValue = searchForKey(data, "ratingValue");
+    let timeVar = document.createElement('time');
+    let totalTime = searchForKey(data, 'totalTime');
+    let ingr = document.createElement('p');
+    let recipeIngredient = searchForKey(data, 'recipeIngredient');
     
     imgVar_1.src = searchForKey(data, "thumbnailUrl");
     imgVar_1.alt = searchForKey(data, "headline");
@@ -123,7 +128,6 @@ class RecipeCard extends HTMLElement {
     card.appendChild(parVar_2);
 
     divVar.className = "rating";
-    let ratingValue = searchForKey(data, "ratingValue");
 
     if(ratingValue){
       let spanVar_1 = document.createElement('span');
@@ -176,29 +180,17 @@ class RecipeCard extends HTMLElement {
 
     card.appendChild(divVar);
 
-    let timeVar = document.createElement('time');
-    let totalTime = searchForKey(data, 'totalTime');
-
     if(totalTime){
       timeVar.innerText = convertTime(totalTime);
       card.appendChild(timeVar);
     }
 
-    let ingr = document.createElement('p');
     ingr.className = "ingredients";
-
-    let recipeIngredient = searchForKey(data, 'recipeIngredient');
     ingr.innerText = createIngredientList(recipeIngredient);
-
     card.appendChild(ingr);
 
     this.shadowRoot.appendChild(styleElem);
     this.shadowRoot.appendChild(card);
-
-
-
-
-
     
   }
 }
