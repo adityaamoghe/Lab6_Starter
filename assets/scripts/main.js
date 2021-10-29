@@ -112,9 +112,9 @@ function bindShowMore() {
 
     }
     else {
-      mainVar.removeChild(mainVar.lastChild);
-      mainVar.removeChild(mainVar.lastChild);
-      mainVar.removeChild(mainVar.lastChild);
+      for(let itr = 0 ; itr < 3; itr++){
+        mainVar.removeChild(mainVar.lastChild);
+      }
       button.innerText = "Show more";
     }
 
