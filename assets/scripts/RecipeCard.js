@@ -131,10 +131,12 @@ class RecipeCard extends HTMLElement {
 
     if(ratingValue){
       let spanVar_1 = document.createElement('span');
+      let spanVar_2 = document.createElement('span');
+      let ratingCount = searchForKey(data, "ratingCount");
+      let imgVar_2 = document.createElement('img');
+
       spanVar_1.innerHTML = ratingValue;
       divVar.appendChild(spanVar_1);
-
-      let imgVar_2 = document.createElement('img');
 
       if(ratingValue < 0.5){
         imgVar_2.src = "assets/images/icons/0-star.svg";
@@ -157,11 +159,7 @@ class RecipeCard extends HTMLElement {
       }
 
       divVar.appendChild(imgVar_2);
-      let spanVar_2 = document.createElement('span');
-      let ratingCount = searchForKey(data, "ratingCount");
-
       if(!ratingCount){ratingCount = 0;}
-
       spanVar_2.innerText = "(" + ratingCount + ")";
       divVar.appendChild(spanVar_2);
 
